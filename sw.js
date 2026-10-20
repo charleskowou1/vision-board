@@ -1,6 +1,6 @@
 /* Offline support: serve the site from a cache, refresh it in the background.
    Bump CACHE when you change files so phones pick up the new version. */
-const CACHE = "vision-board-v30";
+const CACHE = "vision-board-v31";
 const ASSETS = [
   "./",
   "index.html",

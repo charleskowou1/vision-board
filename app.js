@@ -598,6 +598,26 @@
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 
+  // What's in a backup, in plain words, so you can tell a full one from an empty one
+  function backupSummary(data, images = []) {
+    const read = (k, fallback) => {
+      try {
+        return JSON.parse(data["vb." + k]) ?? fallback;
+      } catch {
+        return fallback;
+      }
+    };
+    const parts = [
+      plural(read("goals", []).length, "goal"),
+      plural(read("rules", []).length, "rule"),
+      plural(images.length, "picture"),
+      plural(Object.keys(read("gratitude", {})).length, "gratitude day"),
+      plural(read("hardships", []).length, "hardship"),
+      plural(read("pledges", []).length, "pledge day"),
+    ];
+    return parts.join(", ");
+  }
+
   async function exportBackup() {
     const data = {};
     try {
@@ -628,7 +648,7 @@
     const json = JSON.stringify({ app: "vision-board", version: 1, exportedAt: new Date().toISOString(), data, images, audio });
     const saved = await saveFile(new Blob([json], { type: "application/json" }), `vision-board-backup-${dateKey()}.json`);
     if (saved) store.set("lastBackup", dateKey());
-    return saved;
+    return saved && backupSummary(data, images);
   }
 
   async function importBackup(file) {
@@ -643,7 +663,7 @@
       return;
     }
     const when = backup.exportedAt ? new Date(backup.exportedAt).toLocaleDateString() : "an earlier date";
-    if (!confirm(`Replace everything on this device with the backup from ${when}?`)) return;
+    if (!confirm(`This backup from ${when} has ${backupSummary(backup.data || {}, backup.images || [])}.\n\nReplace everything on this device with it?`)) return;
 
     Object.keys(localStorage)
       .filter((k) => k.startsWith("vb."))
@@ -687,7 +707,7 @@
         if (!saved) return;
         showState();
         $$(".today-pill[href='#app']").forEach((p) => p.remove());
-        toast("Backup downloaded.");
+        toast(`Backup saved: ${saved}.`);
       })
     );
     $("#import-input").addEventListener("change", (e) => {
