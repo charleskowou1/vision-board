@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Board · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="board">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow">Vision Board</p>
+        <h1 class="quote" data-fixed>If you can <em>see</em> it, you can <em>be</em> it.</h1>
+      </section>
+
+      <section class="reveal">
+        <div class="board-tools" id="board-tools">
+          <div class="seg collage-only" role="group" aria-label="Board style">
+            <label><input type="radio" name="style" value="polaroid" /><span>Polaroids</span></label>
+            <label><input type="radio" name="style" value="scrapbook" /><span>Scrapbook</span></label>
+            <label><input type="radio" name="style" value="gallery" /><span>Gallery</span></label>
+            <label><input type="radio" name="style" value="film" /><span>Film</span></label>
+          </div>
+          <div class="board-actions">
+            <label class="mini add-photos" for="photo-input">＋ Add</label>
+            <button class="mini collage-only" id="play-btn" type="button">▶ Play</button>
+            <button class="mini" id="shuffle-btn" type="button">↻ Shuffle</button>
+            <button class="mini collage-only" id="wallpaper-btn" type="button">Wallpaper</button>
+            <button class="mini needs-pics" id="edit-btn" type="button" aria-pressed="false">Edit</button>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" multiple hidden />
+        </div>
+        <p class="board-meta" id="board-count"></p>
+        <div class="collage" id="collage"></div>
+        <div class="board" id="board" hidden></div>
+        <label class="empty board-empty" id="board-empty" for="photo-input">
+          <span><b>Your board is empty.</b> Add the first picture of the life you're building: the car, the house, the city, the people.</span>
+          <span class="btn">＋ Add photos</span>
+        </label>
+      </section>
+    </main>
+    <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-label="Slideshow">
+      <img alt="" />
+      <div class="show-text">
+        <p class="show-cap"></p>
+        <p class="show-line">If you can see it, you can be it.</p>
+      </div>
+      <button class="lb-btn show-close" type="button" aria-label="Close slideshow">×</button>
+    </div>
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Picture viewer">
+      <button class="lb-btn lb-close" type="button" aria-label="Close">×</button>
+      <button class="lb-btn lb-prev" type="button" aria-label="Previous picture">‹</button>
+      <figure><img alt="" /><figcaption></figcaption></figure>
+      <button class="lb-btn lb-next" type="button" aria-label="Next picture">›</button>
+    </div>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Review · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="review">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow" id="review-eyebrow">Progress review</p>
+        <h1 class="title-xl" id="review-title">How it's <em>going</em>.</h1>
+        <p class="lede" id="review-lede"></p>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">By the numbers</span>
+        <div class="stat-grid" id="stat-grid"></div>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Every day</span>
+        <h2>The check-in</h2>
+        <p class="sub">Each square is one day of the hiatus.</p>
+        <div class="grid60" id="checkin-grid"></div>
+        <div class="legend">
+          <span><i class="cell s2"></i>Pledge + every rule</span>
+          <span><i class="cell s1"></i>Partial</span>
+          <span><i class="cell"></i>Missed</span>
+        </div>
+      </section>
+
+      <div class="two-col">
+        <section class="panel reveal">
+          <span class="step">Goals</span>
+          <h2>What got done</h2>
+          <div id="review-goals"></div>
+        </section>
+        <section class="panel reveal">
+          <span class="step">Rules</span>
+          <h2>How well I kept my code</h2>
+          <div id="review-rules"></div>
+        </section>
+      </div>
+
+      <section class="panel reveal">
+        <span class="step">Hardships</span>
+        <h2>What I learned the hard way</h2>
+        <p class="sub review-hardship-summary" id="review-hardship-summary" hidden></p>
+        <div id="review-lessons"></div>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Gratitude</span>
+        <h2>Things I was grateful for</h2>
+        <div id="review-gratitude"></div>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Reflection</span>
+        <h2>Write it down</h2>
+        <p class="sub">Saved as you type. Come back on day 60 and finish it.</p>
+        <div class="reflect">
+          <label>Who was I on day 1?<textarea name="before" placeholder="Be honest…"></textarea></label>
+          <label>Who am I now?<textarea name="after" placeholder="What changed…"></textarea></label>
+          <label>What's next?<textarea name="next" placeholder="The next 60 days…"></textarea></label>
+        </div>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

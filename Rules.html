@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Rules · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="rules">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow">Rules</p>
+        <h1 class="quote">“Time to go to <em>war</em> with yourself.”</h1>
+        <p class="cite">David Goggins</p>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Non-negotiables</span>
+        <h2>The code I live by</h2>
+        <p class="sub">Write your rules for the 60 days, then check off each one you kept today.</p>
+        <div class="day-nav">
+          <button class="mini day-prev" id="day-prev" type="button" hidden>‹ Previous day</button>
+          <div class="day-nav-label"><b id="day-title">Today</b><span id="day-date"></span></div>
+          <button class="mini day-next" id="day-next" type="button" hidden>Next day ›</button>
+        </div>
+        <p class="hint past-note" id="past-note" hidden>Looking back. Tick anything you kept but forgot to check off. New rules start from today.</p>
+        <div class="progress-head"><b id="rules-today">0/0</b><span id="rules-when">kept today</span></div>
+        <div class="progress" role="presentation"><i id="rules-bar"></i></div>
+        <div id="rules-list"></div>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="home">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow" id="hero-eyebrow">2 Month Hiatus</p>
+        <h1 class="title-xl">The World<br />Is <em>Yours</em></h1>
+        <p class="lede">Sixty days of focus. No distractions, no excuses. Make every one of them count.</p>
+      </section>
+
+      <section class="panel banner reveal" id="review-banner" hidden>
+        <div>
+          <h2>Day 60. Your review is ready.</h2>
+          <p>See everything you built, kept and learned.</p>
+        </div>
+        <a class="btn" href="Review.html">Open the review →</a>
+      </section>
+
+      <div class="split">
+        <section class="panel reveal" id="tracker">
+          <span class="step">The hiatus</span>
+          <div class="tracker">
+            <div class="ring">
+              <svg viewBox="0 0 180 180" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" style="stop-color: var(--accent)" />
+                    <stop offset="1" style="stop-color: var(--accent-2)" />
+                  </linearGradient>
+                </defs>
+                <circle class="track" cx="90" cy="90" r="80" />
+                <circle class="bar" cx="90" cy="90" r="80" />
+              </svg>
+              <div class="ring-center">
+                <div class="ring-big" id="ring-day">1</div>
+                <div class="ring-small">of 60 days</div>
+              </div>
+            </div>
+            <div>
+              <div class="stats-row">
+                <div><div class="stat-num" id="days-left">60</div><div class="stat-label">Days left</div></div>
+                <div><div class="stat-num" id="end-date">–</div><div class="stat-label">Finish line</div></div>
+                <div><div class="stat-num" id="streak">0</div><div class="stat-label">Pledge streak</div></div>
+                <div><div class="stat-num" id="mornings">0</div><div class="stat-label">Mornings done</div></div>
+              </div>
+              <label class="start-field">Started on <input type="date" id="start-date" /></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel qotd reveal">
+          <span class="step">Quote of the day</span>
+          <div id="qotd-body">
+            <blockquote id="qotd-text"></blockquote>
+            <p class="cite" id="qotd-by"></p>
+          </div>
+          <button class="btn ghost" id="qotd-next" type="button">Another one ↻</button>
+        </section>
+      </div>
+
+      <section class="panel reveal">
+        <div class="checkin-head">
+          <div>
+            <span class="step">Daily check-in</span>
+            <h2>Show up 60 times</h2>
+            <p class="sub" id="checkin-summary"></p>
+          </div>
+          <div class="today-list" id="today-list"></div>
+        </div>
+        <div class="grid60" id="checkin-grid"></div>
+        <div class="legend">
+          <span><i class="cell s2"></i>Pledge + every rule</span>
+          <span><i class="cell s1"></i>Partial</span>
+          <span><i class="cell"></i>Missed</span>
+        </div>
+      </section>
+
+      <section class="reveal" style="margin-bottom: 24px">
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <section class="panel banner reveal">
+        <div>
+          <h2>Progress review</h2>
+          <p>Streaks, goals, rules kept and lessons learned, all on one page.</p>
+        </div>
+        <a class="btn ghost" href="Review.html">See how it's going →</a>
+      </section>
+
+      <section class="panel reveal" id="app">
+        <div class="app-grid">
+          <div>
+            <span class="step">On your phone</span>
+            <h2>Use it like an app</h2>
+            <p class="sub" id="install-hint">Open this site on your phone and add it to your home screen.</p>
+            <button class="btn" id="install-btn" type="button" hidden>Install app</button>
+          </div>
+          <div>
+            <span class="step">Your data</span>
+            <h2>Back it up</h2>
+            <p class="sub">Everything is saved on this device only. Download a backup to keep it safe, or restore it on another phone or computer.</p>
+            <p class="sub" id="backup-state"></p>
+            <div class="btn-row">
+              <button class="btn" id="export-btn" type="button">Download backup</button>
+              <label class="btn ghost" for="import-input">Restore a backup</label>
+              <input type="file" id="import-input" accept="application/json,.json" hidden />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

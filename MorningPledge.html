@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Morning Pledge · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="pledge">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow">Morning Pledge</p>
+        <h1 class="quote">“Time to go to <em>war</em> with yourself.”</h1>
+        <p class="cite">David Goggins</p>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Step 1 · Sit down</span>
+        <h2>Give me 3 things you're grateful for</h2>
+        <p class="sub">Start the day with what you already have. It saves as you type.</p>
+        <div class="gratitude">
+          <label><input type="text" placeholder="I'm grateful for…" aria-label="Grateful for, 1" /></label>
+          <label><input type="text" placeholder="I'm grateful for…" aria-label="Grateful for, 2" /></label>
+          <label><input type="text" placeholder="I'm grateful for…" aria-label="Grateful for, 3" /></label>
+        </div>
+        <p class="save-state" id="save-state" aria-live="polite"></p>
+        <div class="claude-row">
+          <button class="btn ghost" id="claude-btn" type="button" disabled>✦ Reflect with Claude</button>
+          <span class="meta" id="claude-hint">Opens your Claude and asks why these are worth being grateful for.</span>
+        </div>
+        <details class="history" id="gratitude-history" hidden>
+          <summary>Past mornings</summary>
+          <ul></ul>
+        </details>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">Step 2 · Say it out loud</span>
+        <h2>The pledge</h2>
+        <p class="pledge-text" id="pledge-text"></p>
+        <div class="pledge-actions">
+          <button class="btn" id="pledge-btn" type="button">I take this pledge</button>
+          <span class="streak"><b id="streak">0</b> day streak</span>
+        </div>
+        <div class="voice-row">
+          <button class="btn ghost" id="speak-btn" type="button">▶ Read it to me</button>
+          <button class="btn ghost" id="rec-btn" type="button">● Record yourself</button>
+          <span class="rec-state" id="rec-state" hidden><span class="rec-dot"></span>Recording…</span>
+          <audio id="my-recording" controls hidden></audio>
+        </div>
+      </section>
+
+      <section class="panel visualize reveal">
+        <span class="step">Step 3</span>
+        <h2>Now believe it. Visualize it.</h2>
+        <p class="sub">Close your eyes and breathe with the orb. Picture the life you just pledged to build. A bell rings when the minute is up.</p>
+        <div class="orb-wrap">
+          <div class="orb" id="orb"><span class="orb-label" id="orb-label">Ready</span></div>
+        </div>
+        <p class="vis-left" id="vis-left">60s</p>
+        <button class="btn" id="visualize-btn" type="button">Start 60-second visualization</button>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

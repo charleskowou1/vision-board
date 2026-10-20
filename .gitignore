@@ -1,0 +1,7 @@
+# Personal starters stay on this computer
+personal.js
+
+# Not part of the site
+original/
+.vscode/
+.DS_Store

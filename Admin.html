@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Admin · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="admin">
+    <main>
+      <section class="hero admin-hero reveal">
+        <p class="eyebrow">Admin</p>
+        <h1 class="title-xl">Make it <em>yours</em></h1>
+        <p class="lede">Everything here saves to this device and goes into your backups.</p>
+      </section>
+
+      <nav class="admin-tabs reveal" role="tablist" aria-label="Admin sections">
+        <button class="admin-tab" type="button" role="tab" data-tab="quotes"><span class="tab-icon" aria-hidden="true">❝</span><span class="tab-name">Quotes</span><span class="tab-note"></span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="goals"><span class="tab-icon" aria-hidden="true">◎</span><span class="tab-name">Goals</span><span class="tab-note"></span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="pledge"><span class="tab-icon" aria-hidden="true">☀</span><span class="tab-name">Pledge</span><span class="tab-note">Your words</span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="claude"><span class="tab-icon" aria-hidden="true">✦</span><span class="tab-name">Claude</span><span class="tab-note"></span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="pictures"><span class="tab-icon" aria-hidden="true">▣</span><span class="tab-name">Pictures</span><span class="tab-note"></span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="dates"><span class="tab-icon" aria-hidden="true">◷</span><span class="tab-name">Dates</span><span class="tab-note"></span></button>
+        <button class="admin-tab" type="button" role="tab" data-tab="backup"><span class="tab-icon" aria-hidden="true">⇩</span><span class="tab-name">Backup</span><span class="tab-note"></span></button>
+      </nav>
+
+      <section class="panel admin-panel" data-tab-panel="quotes" role="tabpanel" hidden>
+        <span class="step">Quotes · <span id="quote-count"></span></span>
+        <h2>The quote library</h2>
+        <p class="sub">One of these shows up at random at the top of each page. Wrap a word in *stars* to make it glow, like: Time to go to *war* with yourself.</p>
+        <form class="goal-form" id="quote-form">
+          <label class="field">Quote<textarea name="q" rows="2" placeholder="The quote, without quotation marks" required></textarea></label>
+          <label class="field">Who said it<input type="text" name="a" placeholder="Optional" autocomplete="off" /></label>
+          <button class="btn" type="submit">Add quote</button>
+        </form>
+        <ol class="items" id="quote-items"></ol>
+        <p class="empty" id="quotes-empty" hidden>No quotes. Add one above, or bring back the starters.</p>
+        <button class="btn ghost" id="restore-quotes" type="button" style="margin-top: 16px" hidden>Bring back the starter quotes</button>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="goals" role="tabpanel" hidden>
+        <span class="step">Goals</span>
+        <h2>Edit your goals</h2>
+        <p class="sub">Change a name, date or cost and it saves when you leave the box. To add goals, log money or tick off steps, go to <a href="Goals.html" style="color: var(--accent)">Goals</a>.</p>
+        <ol class="items" id="admin-goals"></ol>
+        <p class="empty" id="admin-goals-empty" hidden>No goals yet. <a href="Goals.html" style="color: var(--accent)">Add your first one →</a></p>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="pledge" role="tabpanel" hidden>
+        <span class="step">Morning pledge</span>
+        <h2>Your pledge</h2>
+        <p class="sub">Put each sentence on its own line. They appear one by one, and "Read it to me" reads them in order.</p>
+        <form class="edit-form" id="pledge-form">
+          <textarea id="pledge-input" rows="7" aria-label="Pledge text"></textarea>
+          <div class="btn-row">
+            <button class="btn" type="submit">Save pledge</button>
+            <button class="btn ghost" id="pledge-reset" type="button">Use the original</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="claude" role="tabpanel" hidden>
+        <span class="step">Claude <span class="saved-note" id="claude-saved" aria-live="polite"></span></span>
+        <h2>Your Claude</h2>
+
+        <h3 class="admin-h3">Tone</h3>
+        <p class="sub">How Claude talks to you, in both the gratitude and hardship prompts. Pick one or write your own.</p>
+        <div class="tone-presets" id="tone-presets" role="group" aria-label="Tone presets"></div>
+        <label class="field">Tone line<input type="text" id="claude-tone" placeholder="Empty means Claude's usual voice" autocomplete="off" /></label>
+
+        <h3 class="admin-h3">What it asks</h3>
+        <p class="sub">Your entries are added above this automatically. Change the wording to change what Claude does with them.</p>
+        <label class="field">Gratitude (Morning Pledge)<textarea id="prompt-gratitude" rows="5"></textarea></label>
+        <button class="mini" type="button" data-reset-prompt="gratitude">Use the original</button>
+        <label class="field" style="margin-top: 16px">Hardships<textarea id="prompt-hardship" rows="4"></textarea></label>
+        <button class="mini" type="button" data-reset-prompt="hardship">Use the original</button>
+
+        <h3 class="admin-h3">Preview</h3>
+        <div class="preview-switch">
+          <button class="mini" type="button" data-preview="gratitude" aria-pressed="true">Gratitude</button>
+          <button class="mini" type="button" data-preview="hardship" aria-pressed="false">Hardship</button>
+        </div>
+        <pre class="prompt-preview" id="prompt-preview"></pre>
+
+        <h3 class="admin-h3">Project</h3>
+        <p class="sub">Paste a Claude project link and the Claude buttons open there, with that project's context. Open the project on claude.ai and copy the address. Leave it empty to use a new chat.</p>
+        <form class="inline-form" id="claude-form">
+          <input type="url" id="claude-project" placeholder="https://claude.ai/project/…" aria-label="Claude project link" autocomplete="off" />
+          <button class="btn" type="submit">Save</button>
+        </form>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="pictures" role="tabpanel" hidden>
+        <span class="step">Vision board</span>
+        <h2>Board pictures</h2>
+        <p class="sub">Tap × on anything that no longer fits your vision. To add pictures or change captions, go to the <a href="Board.html" style="color: var(--accent)">Board</a>.</p>
+        <div class="admin-pics" id="admin-pics"></div>
+        <p class="empty" id="pics-empty" hidden>No pictures on your board yet.</p>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="dates" role="tabpanel" hidden>
+        <span class="step">The hiatus</span>
+        <h2>Dates</h2>
+        <p class="sub">Change the start date and everything else (days left, the check-in grid, the review) follows it.</p>
+        <div class="goal-form-grid">
+          <label class="field">Started on<input type="date" id="admin-start" /></label>
+          <div><div class="stat-label">Finish line</div><div class="stat-num" id="admin-end" style="font-size: 24px; margin-top: 6px"></div></div>
+        </div>
+      </section>
+
+      <section class="panel admin-panel" data-tab-panel="backup" role="tabpanel" hidden>
+        <span class="step">Your data</span>
+        <h2>Back it up</h2>
+        <p class="sub">Everything is saved on this device only. Download a backup to keep it safe, or restore it on another phone or computer.</p>
+        <p class="sub" id="backup-state"></p>
+        <div class="btn-row">
+          <button class="btn" id="export-btn" type="button">Download backup</button>
+          <label class="btn ghost" for="import-input">Restore a backup</label>
+          <input type="file" id="import-input" accept="application/json,.json" hidden />
+        </div>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Goals · Vision Board</title>
+    <meta name="description" content="A 60-day vision board: rules, goals, a morning pledge and the lessons along the way." />
+    <meta name="theme-color" content="#09090d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icons/favicon.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vision" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="goals">
+    <main>
+      <section class="hero reveal">
+        <p class="eyebrow">Goals</p>
+        <h1 class="quote">“Discipline equals <em>freedom</em>.”</h1>
+        <p class="cite">Jocko Willink</p>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">The target</span>
+        <h2>What I'm building toward</h2>
+        <p class="sub">Write each goal down and give it a date. Money goals tell you what to put in each month; the rest get steps you can check off.</p>
+        <div class="progress-head"><b id="goal-pct">0%</b><span id="goal-count">0 of 0 complete</span></div>
+        <div class="progress" role="presentation"><i id="goal-bar"></i></div>
+        <form class="goal-add" id="goal-form">
+          <div class="goal-add-row">
+            <input type="text" name="text" placeholder="Add a goal, e.g. Pay off my car" aria-label="Goal" autocomplete="off" required />
+            <button class="btn" type="submit" id="goal-next">Add goal</button>
+          </div>
+          <div class="goal-details" id="goal-details" hidden>
+            <fieldset class="seg">
+              <legend>Does this goal cost money?</legend>
+              <label><input type="radio" name="kind" value="money" /><span>Yes, it's a money goal</span></label>
+              <label><input type="radio" name="kind" value="steps" /><span>No, I'll track steps</span></label>
+            </fieldset>
+            <div class="goal-form-grid">
+              <label class="field" data-money hidden>Total cost<input type="text" name="target" inputmode="decimal" placeholder="$18,000" autocomplete="off" /></label>
+              <label class="field" data-money hidden>Already put toward it<input type="text" name="saved" inputmode="decimal" placeholder="$0" autocomplete="off" /></label>
+              <label class="field">Target date<input type="date" name="by" /></label>
+            </div>
+            <p class="goal-preview" id="goal-preview" aria-live="polite" hidden></p>
+            <div class="btn-row">
+              <button class="btn" type="submit">Save goal</button>
+              <button class="btn ghost" id="goal-cancel" type="button">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <ol class="items" id="goal-items"></ol>
+        <p class="empty" id="goals-empty">No goals yet. Write down the first thing you want to have done in 60 days.</p>
+      </section>
+
+      <section class="panel reveal">
+        <span class="step">The number</span>
+        <h2>Millionaire by 30</h2>
+        <p class="sub">Update your net worth whenever it changes and watch the bar move.</p>
+        <div class="money-top">
+          <div class="money-big"><span id="money-now">$0</span> <small>/ $1,000,000</small></div>
+          <span class="meta" id="money-pct"></span>
+        </div>
+        <div class="progress" role="presentation"><i id="money-bar"></i></div>
+        <div class="milestones" id="money-milestones"></div>
+        <p class="meta money-next" id="money-next"></p>
+        <div class="money-facts">
+          <div><div class="stat-num" id="money-time">–</div><div class="stat-label">Until you're 30</div></div>
+          <div><div class="stat-num"><span id="money-needed">–</span> <small class="stat-note" id="money-needed-note" hidden>after taxes and expenses</small></div><div class="stat-label">Needed per month</div></div>
+        </div>
+        <form class="money-form" id="money-form">
+          <label>Net worth now <input type="text" id="money-amount" inputmode="decimal" placeholder="$12,500" autocomplete="off" /></label>
+          <label>Your birthday <input type="date" id="birthday" /></label>
+          <button class="btn" type="submit">Update</button>
+        </form>
+        <p class="hint money-chart-note" id="money-chart-note" hidden>Update your number again on another day and your chart starts here.</p>
+        <div class="money-chart-wrap" id="money-chart-wrap" hidden>
+          <p class="list-label">Net worth over time</p>
+          <div class="money-chart" id="money-chart"></div>
+          <div class="chart-tip" id="chart-tip" role="status" hidden></div>
+        </div>
+        <ul class="money-log" id="money-log"></ul>
+      </section>
+    </main>
+    <script src="personal.js" onerror="this.remove()"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
